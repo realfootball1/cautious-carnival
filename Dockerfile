@@ -6,6 +6,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm install
+RUN npm cache clean --force
+RUN npm ci
 COPY . .
 CMD ["node", "index.js"]
