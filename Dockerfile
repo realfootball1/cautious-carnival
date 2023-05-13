@@ -6,7 +6,6 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm cache clean --force
-RUN npm ci
+RUN npm install npm@6.14.5
 COPY . .
 CMD ["node", "index.js"]
