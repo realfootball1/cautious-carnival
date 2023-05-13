@@ -13,7 +13,7 @@ const apiKey = 'SG.CggjQj6wRReEK-MI2xl80Q.dEU7pcq3l7rsVnwIIDwvlH5veegejIw6joBADR
 
 sgMail.setApiKey(apiKey);
 
-// create reusable transporter object using the default SMTP transport
+// create reusable transporter object using the default SMTP transpor
 let transporter = nodemailer.createTransport({
   service: 'SendGrid',
   auth: {
